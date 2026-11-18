@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meta de Participantes</title>
+
+<style>
+    *{
+        margin:0;
+        padding:0;
+        box-sizing:border-box;
+        font-family:Arial, Helvetica, sans-serif;
+    }
+
+    body{
+        background:#f4f7fa;
+        min-height:100vh;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        padding:20px;
+    }
+
+    .container{
+        background:white;
+        max-width:700px;
+        width:100%;
+        padding:40px;
+        border-radius:20px;
+        box-shadow:0 10px 25px rgba(0,0,0,.1);
+        text-align:center;
+    }
+
+    h1{
+        color:#1e3a8a;
+        margin-bottom:15px;
+    }
+
+    .subtitle{
+        color:#666;
+        margin-bottom:30px;
+    }
+
+    .count{
+        font-size:3rem;
+        font-weight:bold;
+        color:#16a34a;
+        margin-bottom:10px;
+    }
+
+    .goal{
+        font-size:1.2rem;
+        margin-bottom:30px;
+        color:#333;
+    }
+
+    .progress-container{
+        width:100%;
+        height:40px;
+        background:#e5e7eb;
+        border-radius:30px;
+        overflow:hidden;
+    }
+
+    .progress-bar{
+        height:100%;
+        width:0%;
+        background:linear-gradient(
+            90deg,
+            #16a34a,
+            #22c55e
+        );
+        border-radius:30px;
+        transition:width 1s ease;
+    }
+
+    .percentage{
+        margin-top:20px;
+        font-size:2rem;
+        font-weight:bold;
+        color:#1e3a8a;
+    }
+
+    .remaining{
+        margin-top:15px;
+        color:#555;
+        font-size:1rem;
+    }
+
+    .footer{
+        margin-top:30px;
+        font-size:.9rem;
+        color:#888;
+    }
+</style>
+
+</head>
+<body>
+
+<div class="container">
+
+    <h1>🎯 Meta de Participantes</h1>
+
+    <p class="subtitle">
+        Ayúdanos a alcanzar nuestra meta.
+    </p>
+
+    <div class="count" id="actualCount">
+        0
+    </div>
+
+    <div class="goal" id="goalText">
+        de 0 participantes
+    </div>
+
+    <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <div class="percentage" id="percentage">
+        0%
+    </div>
+
+    <div class="remaining" id="remaining">
+        Faltan 0 participantes
+    </div>
+
+    <div class="footer">
+        Gracias por apoyar nuestra iniciativa ❤️
+    </div>
+
+</div>
+
+<script>
+
+const META_PERSONAS = 500;
+const PERSONAS_REGISTRADAS = 187;
+
+const porcentaje = Math.min(
+    (PERSONAS_REGISTRADAS / META_PERSONAS) * 100,
+    100
+);
+
+document.getElementById("actualCount").textContent =
+    PERSONAS_REGISTRADAS;
+
+document.getElementById("goalText").textContent =
+    `de ${META_PERSONAS} participantes`;
+
+document.getElementById("percentage").textContent =
+    `${porcentaje.toFixed(1)}%`;
+
+document.getElementById("remaining").textContent =
+    `Faltan ${Math.max(META_PERSONAS - PERSONAS_REGISTRADAS,0)} participantes`;
+
+document.getElementById("progressBar").style.width =
+    `${porcentaje}%`;
+
+</script>
+
+</body>
+</html>
